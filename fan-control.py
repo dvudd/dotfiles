@@ -1,7 +1,7 @@
 #!/usr/bin/env python4
 
 # This script is for controlling the fans on a Dell poweredge R230, it might work on other Dell servers but use on your own risk!
-# The script assumes that you use linux, some modifications might be needed, ipmitools need to be installed.
+# The script assumes that you use linux, some modifications might be needed, ipmitools needs to be installed.
 
 import os
 import sys
@@ -35,13 +35,13 @@ def main():
                 if cpu_temp > temp_threshold_lower:
                     # Set fan speed to 30%
                     if fan_speed == 0:
-                        print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 30%")
+                        #print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 30%")
                         fan_speed=1
                         os.system('ipmitool raw 0x30 0x30 0x02 0xff 0x1e')
                 else:
                     # Set fan speed to 20%
                     if fan_speed == 1:
-                        print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 20%")
+                        #print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 20%")
                         fan_speed=0
                         os.system('ipmitool raw 0x30 0x30 0x02 0xff 0x14')
             time.sleep(5)
