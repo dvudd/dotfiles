@@ -35,13 +35,11 @@ def main():
                 if cpu_temp > temp_threshold_lower:
                     # Set fan speed to 30%
                     if fan_speed == 0:
-                        #print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 30%")
                         fan_speed=1
                         os.system('ipmitool raw 0x30 0x30 0x02 0xff 0x1e')
                 else:
                     # Set fan speed to 20%
                     if fan_speed == 1:
-                        #print("CPU TEMP: " + str(cpu_temp) + "°C -- Setting fan speed to 20%")
                         fan_speed=0
                         os.system('ipmitool raw 0x30 0x30 0x02 0xff 0x14')
             time.sleep(5)
