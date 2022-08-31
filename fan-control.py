@@ -51,7 +51,7 @@ def main():
         sys.exit(1)
 
     except KeyboardInterrupt:
-        print("Exiting... Enabling dynamic fan control")
+        print("Exiting -- Enabling dynamic fan control")
         os.system('ipmitool raw 0x30 0x30 0x01 0x01')
         sys.exit(0)
 
