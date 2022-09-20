@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
+
+# Script to monitor your connection to the internet.
+
 import socket
 import time
 import datetime
 import os
 import csv
 import sys
+
+os.chdir('/opt/wan_monitor')
 
 def record_file_exist():
     return os.path.isfile('data.csv')
