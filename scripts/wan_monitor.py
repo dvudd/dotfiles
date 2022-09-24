@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Script to monitor your connection to the internet.
+# Monitor your connection to the internet by pinging $PINGTARGET
+# It logs the time when to connection is lost and when it's restored as a CSV in data.csv
 
 import socket
 import time
@@ -9,7 +10,10 @@ import os
 import csv
 import sys
 
-os.chdir('/opt/wan_monitor')
+PINGTAGET="1.1.1.1"
+DB_LOC="/opt/wan_monitor"
+
+os.chdir(DB_LOC)
 
 def record_file_exist():
     return os.path.isfile('data.csv')
@@ -20,7 +24,7 @@ def create_record_file():
         writer = csv.DictWriter(csvfile, fieldnames=columns)
         writer.writeheader()
 
-def send_ping_request(host="1.1.1.1", port=53, timeout=3):
+def send_ping_request(host=PINGTAGET, port=53, timeout=3):
     try:
         socket.setdefaulttimeout(timeout)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,7 +48,7 @@ def calculate_time(start, stop):
     seconds = float(str(time_difference.total_seconds()))
     return str(datetime.timedelta(seconds=seconds)).split(".")[0]
 
-def mon_net_connection(ping_freq=2):
+def main(ping_freq=2):
     while True:
         if send_ping_request():
             time.sleep(ping_freq)
@@ -78,4 +82,4 @@ def mon_net_connection(ping_freq=2):
             
 if not record_file_exist():
         create_record_file()
-mon_net_connection()
+main()
