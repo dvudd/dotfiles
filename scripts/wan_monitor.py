@@ -77,8 +77,9 @@ def main(ping_freq=2):
                 writer.writerows(rows)
 
             # Since I couldn't get xmpppy to work to save my life, I resorted to use sendxmpprc instead.
+            # Note: $XMPP_TARGET is a global variable leading to my XMPP address
             xmpp_message = "Internet connectivity was lost! The connection was restored at " + str(up_time).split(".")[0] + " and lasted for " + calc_down_time
-            os.system('echo ' + xmpp_message + ' | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n foo@bar.com')
+            os.system('echo ' + xmpp_message + ' | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $XMPP_TARGET')
             
 if not record_file_exist():
         create_record_file()

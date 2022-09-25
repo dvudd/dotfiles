@@ -6,15 +6,15 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-# SETTINGS
-export BORG_REPO=ssh://username@example.com:2022/~/backup/main
-export BORG_PASSPHRASE='gpg --decrypt borg.gpg'
-xmpptarget=foo@bar.com
+# Settings
+export BORG_REPO=/mnt/data/backup
+export BORG_PASSPHRASE="gpg --decrypt /etc/backups/borg.gpg"
 archive_name=$(date +$HOSTNAME"_%d-%m-%Y")
 
-# some helpers and error handling:
-info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
-xmpp() { echo "$*" | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $xmpptarget}
+# Helpers and error handling:
+# Note: $XMPP_TARGET is a global variable leading to my XMPP address
+info() { logger -t "backup" -f /var/log/backup.log "$*" >&2; }
+xmpp() { echo "$*" | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $XMPP_TARGET}
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 info "Daily backup: Starting"
@@ -30,10 +30,9 @@ borg create                         \
     --show-rc                       \
     --compression lz4               \
     --exclude-caches                \
-    --exclude 'home/*/.cache/*'     \
-    --exclude 'var/tmp/*'           \
+    --exclude-from '/etc/backups/exclude-list' \
                                     \
-    "$archive_name"                 \
+    ::$archive_name                 \
     /etc                            \
     /home                           \
     /root                           \
