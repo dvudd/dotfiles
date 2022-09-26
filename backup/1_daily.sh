@@ -69,16 +69,17 @@ borg compact
 
 compact_exit=$?
 
-# use highest exit code as global exit code
+# use highest exit code as exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
-global_exit=$(( compact_exit > global_exit ? compact_exit : global_exit ))
 
-if [ ${global_exit} -eq 0 ]; then
-    info "Daily backup: Finished successfully"
-elif [ ${global_exit} -eq 1 ]; then
+if [ ${global_exit} -eq 1 ];
+then
     info "Daily backup: Finished with warnings!"
     xmpp "Daily backup of $HOSTNAME finished with warnings"
-else
+fi
+
+if [ ${global_exit} -gt 1 ];
+then
     info "Daily backup: Finished with errors!!"
     xmpp "Daily backup of $HOSTNAME finished with errors"
 fi
