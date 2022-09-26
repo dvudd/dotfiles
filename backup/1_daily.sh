@@ -14,7 +14,7 @@ archive_name=$(date +$HOSTNAME"_%d-%m-%Y")
 # Helpers and error handling:
 # Note: $XMPP_TARGET is a global variable leading to my XMPP address
 info() { logger -t "backup" -f /var/log/backup.log "$*" >&2; }
-xmpp() { echo "$*" | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $XMPP_TARGET}
+xmpp() { echo "$*" | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $XMPP_TARGET; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 info "Daily backup: Starting"
@@ -22,23 +22,24 @@ info "Daily backup: Starting"
 # Backup the most important directories into an archive named after
 # the machine this script is currently running on:
 
-borg create \
-    --verbose   \
-    --filter archive_name\
-    --list  \
-    --stats \
-    --show-rc   \
-    --compression lz4   \
-    --exclude-caches    \
+borg create                                     \
+    --dry-run                                   \
+    --verbose                                   \
+    --filter archive_name                       \
+    --list                                      \
+    --stats                                     \
+    --show-rc                                   \
+    --compression lz4                           \
+    --exclude-caches                            \
     --exclude-from '/etc/backups/exclude-list'  \
-    ::$archive_name \
-    /etc    \
-    /hostname   \
-    /root   \
-    /var    \
-    /usr/local/bin  \
-    /usr/local/sbin \
-    /srv    \
+    ::$archive_name                             \
+    /etc                                        \
+    /hostname                                   \
+    /root                                       \
+    /var                                        \
+    /usr/local/bin                              \
+    /usr/local/sbin                             \
+    /srv                                        \
     /opt
 
 backup_exit=$?
@@ -50,12 +51,12 @@ info "Daily backup: Pruning repository"
 # limit prune's operation to this machine's archives and not apply to
 # other machines' archives also:
 
-borg prune  \
-    --list  \
+borg prune                          \
+    --list                          \
     --glob-archives '{hostname}_*'  \
-    --show-rc   \
-    --keep-daily    7   \
-    --keep-weekly   4   \
+    --show-rc                       \
+    --keep-daily    7               \
+    --keep-weekly   4               \
     --keep-monthly  6
 
 prune_exit=$?
