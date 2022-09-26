@@ -34,7 +34,7 @@ borg create                                     \
     --exclude-from '/etc/backups/exclude-list'  \
     ::$archive_name                             \
     /etc                                        \
-    /hostname                                   \
+    /home                                       \
     /root                                       \
     /var                                        \
     /usr/local/bin                              \
