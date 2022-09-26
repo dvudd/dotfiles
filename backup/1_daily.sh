@@ -8,7 +8,7 @@ fi
 
 # Settings
 export BORG_REPO=/mnt/data/backup
-export BORG_PASSPHRASE="gpg --quiet --decrypt /etc/backups/borg.gpg"
+export BORG_PASSPHRASE="gpg --decrypt /etc/backups/borg.gpg"
 archive_name=$(date +$HOSTNAME"_%d-%m-%Y")
 
 # Helpers and error handling:
@@ -60,14 +60,6 @@ borg prune                          \
     --keep-monthly  6
 
 prune_exit=$?
-
-# actually free repo disk space by compacting segments
-
-info "Daily backup: Compacting repository"
-
-borg compact
-
-compact_exit=$?
 
 # use highest exit code as exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
