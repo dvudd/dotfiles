@@ -8,7 +8,7 @@ fi
 
 # Settings
 export BORG_REPO=/mnt/data/backup
-export BORG_PASSPHRASE="gpg --decrypt /etc/backups/borg.gpg"
+export BORG_PASSPHRASE=$(gpg --decrypt /etc/backups/borg.gpg)
 archive_name=$(date +$HOSTNAME"_%d-%m-%Y")
 
 # Helpers and error handling:
