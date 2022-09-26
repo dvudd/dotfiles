@@ -61,14 +61,6 @@ borg prune                          \
 
 prune_exit=$?
 
-# actually free repo disk space by compacting segments
-
-info "Daily backup: Compacting repository"
-
-borg compact
-
-compact_exit=$?
-
 # use highest exit code as exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 
