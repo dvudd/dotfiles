@@ -23,7 +23,6 @@ info "Daily backup: Starting"
 # the machine this script is currently running on:
 
 borg create                                     \
-    --dry-run                                   \
     --verbose                                   \
     --filter archive_name                       \
     --list                                      \
