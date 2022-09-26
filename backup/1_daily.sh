@@ -32,7 +32,7 @@ borg create                         \
     --exclude-caches                \
     --exclude-from '/etc/backups/exclude-list' \
                                     \
-    ::$archive_name                 \
+    '::$archive_name'               \
     /etc                            \
     /home                           \
     /root                           \
