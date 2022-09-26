@@ -1,5 +1,6 @@
 #!/bin/sh
 # SOURCE: https://github.com/borgbackup/borg/blob/master/docs/quickstart.rst
+# Daily backup to internal HDD
 
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
@@ -13,7 +14,7 @@ archive_name=$(date +$HOSTNAME"_%d-%m-%Y")
 
 # Helpers and error handling:
 # Note: $XMPP_TARGET is a global variable leading to my XMPP address
-info() { logger -t "backup" -f /var/log/backup.log "$*" >&2; }
+info() { logger -t "backup" "$*" >&2; }
 xmpp() { echo "$*" | sendxmpp --tls-ca-path="/etc/ssl/certs" -t -n $XMPP_TARGET; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
@@ -39,7 +40,7 @@ borg create                                     \
     /usr/local/bin                              \
     /usr/local/sbin                             \
     /srv                                        \
-    /opt
+    /opt >> /var/log/backup/$archive_name.log 2>&1
 
 backup_exit=$?
 
@@ -55,8 +56,7 @@ borg prune                          \
     --glob-archives '{hostname}_*'  \
     --show-rc                       \
     --keep-daily    7               \
-    --keep-weekly   4               \
-    --keep-monthly  6
+    --keep-weekly   4 >> /var/log/backup/$archive_name.log 2>&1
 
 prune_exit=$?
 
