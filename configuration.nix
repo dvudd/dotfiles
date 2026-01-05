@@ -92,7 +92,6 @@
     isNormalUser = true;
     description = "David Eriksson";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
-    shell = pkgs.zsh;
     packages = with pkgs; [];
   };
 
@@ -193,6 +192,7 @@
       cargo
       git
       python3
+      godot
 
       # Terminal tools
       killall
@@ -250,6 +250,26 @@
       settings = {
 	init.defaultBranch = "main";
       };
+    };
+
+    programs.zsh = {
+      enable = true;
+      oh-my-zsh = {
+        enable = true;
+        theme = "cypher";
+        plugins = [
+          "git"
+        ];
+      };
+        
+      shellAliases = {
+        vim = "nvim";
+      };
+        
+      initContent = ''
+        export PATH="$HOME/.local/bin:$PATH"
+        [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+      '';
     };
     
     programs.home-manager.enable = true;
