@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       <home-manager/nixos>
     ];
 
@@ -218,6 +218,17 @@
       hyprlock
       udiskie
     ];
+
+    # Dotfiles
+    home.file = {
+      ".config/hypr".source = ./dots/hypr;
+      ".config/kitty".source = ./dots/kitty;
+      ".config/nvim".source = ./dots/nvim;
+      ".config/nwg-bar".source = ./dots/nwg-bar;
+      ".config/nwg-drawer".source = ./dots/nwg-drawer;
+      ".config/waybar".source = ./dots/waybar;
+      ".config/wofi".source = ./dots/wofi;
+    };
 
     # Services
     services.udiskie = {
