@@ -1,0 +1,102 @@
+/* Gruvbox Color Scheme */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack Nerd Font", "Font Awesome 7 Free", sans-serif;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #282828;
+    color: #ebdbb2;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #ebdbb2;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background: #3c3836;
+}
+
+#workspaces button.active {
+    background-color: #504945;
+    border-bottom: 3px solid #d79921;
+}
+
+#workspaces button.urgent {
+    background-color: #cc241d;
+}
+
+#custom-launcher,
+#clock,
+#network,
+#pulseaudio,
+#tray,
+#window {
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #ebdbb2;
+}
+
+#custom-launcher {
+    color: #83a598;
+    font-size: 16px;
+    padding: 0 12px;
+    margin-left: 5px;
+}
+
+#custom-launcher:hover {
+    background-color: #3c3836;
+    color: #458588;
+}
+
+#window {
+    color: #d5c4a1;
+    font-weight: bold;
+}
+
+#network {
+    color: #fabd2f;
+}
+
+#network.disconnected {
+    color: #fb4934;
+}
+
+#bluetooth {
+    color: #458588;
+}
+
+#bluetooth.disabled {
+    color: #928374;
+}
+
+#pulseaudio {
+    color: #b8bb26;
+}
+
+#pulseaudio.muted {
+    color: #928374;
+}
+
+#tray {
+    background-color: transparent;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ebdbb2;
+        color: #282828;
+    }
+}

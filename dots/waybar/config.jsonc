@@ -1,0 +1,66 @@
+{
+    "layer": "top",
+    "position": "top",
+    "output": "DP-1",
+    "height": 30,
+    "spacing": 4,
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": [""],
+    "modules-right": ["tray", "pulseaudio", "bluetooth", "network", "clock"],
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "all-outputs": false,
+        "sort-by-number": true
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "custom/launcher": {
+        "format": "",
+        "on-click": "nwg-drawer",
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%a %d %b %H:%M}"
+    },
+
+    "network": {
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 {ipaddr}",
+        "format-disconnected": "󰖪 Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}",
+        "on-click": "kitty --class floating -e nmtui"
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂯 󰊴 ",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "kitty --class floating -e bluetuith"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 Muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "tray": {
+        "spacing": 10
+    }
+}
