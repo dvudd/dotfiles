@@ -90,6 +90,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.david = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "David Eriksson";
     extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
     packages = with pkgs; [];
@@ -204,6 +205,7 @@
       keepassxc
       obsidian
       mpv
+      imv
       claude-code
       kitty
 
