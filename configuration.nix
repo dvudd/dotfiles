@@ -271,6 +271,7 @@
         
       initContent = ''
         export PATH="$HOME/.local/bin:$PATH"
+        export PATH="$HOME/.cargo/bin:$PATH"
         [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
       '';
     };
