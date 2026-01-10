@@ -208,10 +208,11 @@
       imv
       claude-code
       kitty
+      discord
 
       # Wayland/Hyprland utilities
       wofi
-      hyprpaper
+      swww
       bluetuith
       mako
       libnotify
