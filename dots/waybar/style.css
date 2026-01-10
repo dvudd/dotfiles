@@ -30,8 +30,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-    background-color: #504945;
-    border-bottom: 3px solid #d79921;
+    color: #d79921;
 }
 
 #workspaces button.urgent {

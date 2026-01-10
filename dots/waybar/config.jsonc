@@ -7,13 +7,23 @@
 
     "modules-left": ["custom/launcher", "hyprland/workspaces", "hyprland/window"],
     "modules-center": [""],
-    "modules-right": ["tray", "pulseaudio", "bluetooth", "network", "clock"],
+    "modules-right": ["pulseaudio", "bluetooth", "network", "clock"],
 
     "hyprland/workspaces": {
-        "format": "{id}",
+        "format": "{icon}",
         "on-click": "activate",
         "all-outputs": false,
-        "sort-by-number": true
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4]
+        },
+        "format-icons": {
+            "5": "",
+            "6": "",
+            "active": "",
+            "default": "",
+            "empty": ""
+        }
     },
 
     "hyprland/window": {
