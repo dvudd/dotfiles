@@ -1,16 +1,16 @@
 local keymap = vim.keymap.set
 
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-keymap("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-keymap("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+keymap("n", "<C-Left>", "<C-w>h", { desc = "Move to left window" })
+keymap("n", "<C-Down>", "<C-w>j", { desc = "Move to bottom window" })
+keymap("n", "<C-Up>", "<C-w>k", { desc = "Move to top window" })
+keymap("n", "<C-Right>", "<C-w>l", { desc = "Move to right window" })
 
 -- Resize windows
-keymap("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-keymap("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+keymap("n", "<C-k>", ":resize +2<CR>", { desc = "Increase window height" })
+keymap("n", "<C-j>", ":resize -2<CR>", { desc = "Decrease window height" })
+keymap("n", "<C-h>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+keymap("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- Buffer navigation
 keymap("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
