@@ -1,10 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "master",  -- Use the old stable version instead of the rewrite
   build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  },
+  lazy = false,
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -32,15 +30,6 @@ return {
       },
       indent = {
         enable = true,
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>",
-          node_incremental = "<CR>",
-          scope_incremental = "<S-CR>",
-          node_decremental = "<BS>",
-        },
       },
     })
   end,

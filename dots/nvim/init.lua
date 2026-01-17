@@ -22,6 +22,7 @@ require("config.keymaps")
 
 -- Load plugins
 require("lazy").setup("plugins", {
+  lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
   checker = { enabled = false },
   change_detection = { notify = false },
 })

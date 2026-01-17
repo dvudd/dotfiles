@@ -227,7 +227,10 @@
       ".config/hypr".source = ./dots/hypr;
       ".config/kitty".source = ./dots/kitty;
       ".config/mako".source = ./dots/mako;
-      ".config/nvim".source = ./dots/nvim;
+      ".config/nvim" = {
+        source = ./dots/nvim;
+        recursive = true;
+      };
       ".config/nwg-bar".source = ./dots/nwg-bar;
       ".config/nwg-drawer".source = ./dots/nwg-drawer;
       ".config/waybar".source = ./dots/waybar;
