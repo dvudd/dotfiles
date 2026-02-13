@@ -110,8 +110,10 @@
 
   # System tools
   blueman
+  wiremix
   nautilus
   syncthing
+  unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -206,9 +208,12 @@
       obsidian
       mpv
       imv
-      claude-code
       kitty
       discord
+      orca-slicer
+      gamescope
+      remmina
+      thunderbird
 
       # Wayland/Hyprland utilities
       wofi
