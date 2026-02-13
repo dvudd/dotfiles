@@ -225,6 +225,9 @@
       nwg-drawer
       hyprlock
       udiskie
+      slurp
+      grim
+      grimblast
     ];
 
     # Dotfiles
