@@ -192,6 +192,7 @@
       clang-tools
       lua-language-server
       gcc
+      gnumake
       cargo
       git
       python3
