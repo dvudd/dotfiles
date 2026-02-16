@@ -50,3 +50,6 @@ keymap('n', '<C-b>', function()
         print("ERROR: NOT A C++ FILE!")
     end
 end, { noremap = true })
+
+-- Open Oil File browser
+keymap("n", "<C-e>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
