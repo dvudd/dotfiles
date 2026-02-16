@@ -40,3 +40,13 @@ keymap("n", "<C-s>", ":w<CR>", { desc = "Save file" })
 -- Quit
 keymap("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 keymap("n", "<leader>Q", ":qa<CR>", { desc = "Quit all" })
+
+-- Compile and run .cpp files
+keymap('n', '<C-b>', function()
+    if vim.fn.expand('%:e') == 'cpp' then
+        vim.cmd('w')
+        vim.cmd('botright split | terminal g++ -std=c++23 -Wall -Wextra -pedantic % -o %:p:r && %:p:r')
+    else
+        print("ERROR: NOT A C++ FILE!")
+    end
+end, { noremap = true })
