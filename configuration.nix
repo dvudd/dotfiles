@@ -203,6 +203,7 @@
       wget
       btop
       fastfetch
+      nvtopPackages.nvidia
 
       # Applications
       keepassxc
